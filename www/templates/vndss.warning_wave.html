@@ -1,0 +1,73 @@
+<link href="css/style_manhdv.css" rel="stylesheet">
+<ion-header-bar class="warning_rain bar-positive">
+	<div ng-include="'templates/vndss.header_detail.html'"></div>
+</ion-header-bar>
+
+<ion-content class="warning_rain_ct">
+
+<div class="list list-detail-vndss">
+	<a class="item item-thumbnail-left" href="#">
+      <img ng-if="data.GeomId!=null" style="background-color:{{data.MauCanhBao}}" src="img/have-map.png" ng-click="_fun._goMap('Cảnh báo mực nước sông', 'TramKTTV', '{{data.GeomId}}')">
+	  <img ng-if="data.GeomId==null" style="background-color:{{data.MauCanhBao}}" src="img/no-map.png">
+       <h2>{{data.StationName}}</h2>
+	  <h2>{{data.BasinName}}</h2>	  
+      <p>Lũ lịch sử: {{data.LLS|  number : 2 }} m</p>
+	  <p>Mức báo động 1: {{data.BD1|  number : 2 }} m</p>
+	  <p>Mức báo động 2: {{data.BD2|  number : 2 }} m</p>
+	  <p>Mức báo động 3: {{data.BD3|  number : 2 }} m</p>
+	  <p style="color:red">{{data.SoSanhBaoDong}}</p>
+    </a>
+</div>
+<!-- Biểu đồ -->
+
+	<div class="card">
+		<div class="item item-divider">
+			Biểu đồ diễn biến mực nước sông
+		</div>
+		<ion-scroll zooming="true" direction="x" style="width: 94%; margin-left: 3px; margin-right:3px; height: 100%" scrollbar-x="false">
+			<div style="width: 600px;"  class="item item-text-wrap" >
+				<canvas id="line"  class="chart chart-line" chart-data="datavalue" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="{ scaleShowHorizontalLines: false,scaleShowVerticalLines: false,tooltipTemplate: '<%= value %> ',responsive: true,datasetFill : false} " ></canvas>
+			</div>
+		</ion-scroll>
+	</div>
+
+<!-- Bảng dữ liệu -->
+	<div class="table" style="width: 100%;padding:5px;">
+		
+			<div >
+				<ion-scroll zooming="true"  style="width:100%;  height: 100%" scrollbar-x="false">
+					<div style="width: 400px; padding: 0px" class="row header">
+						 <div class="col col-10">STT</div>
+						  <div class="col col-30">Thời gian</div>
+						  <div class="col col-30">Thực đo</div>       
+					</div>
+					<ion-scroll zooming="true" direction="y" style="width: 600px; height: 200px; margin-top: 0px; paddning-top: 0px" scrollbar-y="false" scrollbar-x="false"> 
+						<div style="width: 400px; padding: 0px" class="row"  ng-repeat="( index,data1 ) in data.CanhBaoMucNuocSong track by $index ">
+							 <div class="col col-10" style="text-align: center"> {{index + 1}} </div>
+							  <div class="col col-30">{{data1.ThoiGianFomat }}</div>
+							  <div class="col col-30">{{data1.GiaTri|  number : 2 }}</div>
+						</div>
+					</ion-scroll>
+					
+				</ion-scroll>
+			</div>
+	</div>
+	
+		<!-- <div style="display:none" class="card" >
+			<div class="row header">
+			  <div class="col col-10">STT</div>
+			  <div class="col col-30">Thời gian</div>
+			  <div class="col col-30">Thực đo</div>
+			</div>
+			<ion-scroll zooming="true" direction="y" style="width: 100%; margin-top: 0px; paddning-top: 0px" scrollbar-x="true">
+			
+				<div class="row" ng-repeat="( index,data1 ) in data.CanhBaoMucNuocSong track by $index ">
+				  <div class="col col-10" style="text-align: center"> {{index + 1}} </div>
+				  <div class="col col-30">{{data1.ThoiGianFomat }}</div>
+				  <div class="col col-30">{{data1.GiaTri|  number : 2 }}</div>
+				</div>
+			</ion-scroll>
+		</div> -->
+		
+
+</ion-content>

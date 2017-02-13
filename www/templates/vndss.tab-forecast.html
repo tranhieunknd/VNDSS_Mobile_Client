@@ -1,0 +1,86 @@
+<ion-view title="Dự báo">
+  <ion-content class="warning_ct has-header padding" style="padding:0px 3px !important;"> 
+    <div>
+		<div style="width:100%">
+			<div style="width:100%; float:left">
+			<h2 class="title_ct" style="width: 100%; ">Dự báo mưa <span style="color:red ;font-size:13px" ng-show="ListDataMuadubao.length!=0">( {{ListDataMuadubao.length}} trạm có mưa lớn)</span></h2>
+			</div>
+			<div style="width:35%; float:right;display:none">
+			<label style="" class="item item-input item-select">
+				<select ng-model="selection" ng-options="item for item in items" disabled="disabled" style="border: 1px solid #f1f1f1; top:0px; ">
+					<code>selection={{selection}}</code>
+				</select>
+			</label>
+			</div>
+		</div>
+		
+		
+		<div style="width: 100%; clear:both">
+			<h2 class="title_ct_sub">Từ ngày: {{from | date:'dd/MM/yyyy'}}  Đến ngày: {{to | date:'dd/MM/yyyy'}}</h2>
+		</div>
+		<div>
+			<ion-scroll zooming="true" direction="x" style="width: 100%;" scrollbar-x="false">
+				<div style="width: {{ListDataMuadubao.length*128}}px; height: 100%; ">
+					<div class="ct" ng-switch on="selection">
+						<ul class="forecast_3day" style="height: 100px;" ng-switch-default="Xem theo hồ">
+							<li ng-repeat="data1 in ListDataMuadubao | filter: {StationName: search}" >
+							<div style="width:100%; float:left; overflow:hidden;">
+								<span ng-if="data1.GeomId!=null">
+									<img style="float:left; cursor:pointer; background-color:{{data1.MauDuBao}}" src ="img/have-map.png"  ng-click="_fun._goMap('Dự báo mưa', 'TramKTTV', '{{data1.GeomId}}')"/>	
+								</span >
+								<span ng-if="data1.GeomId==null">
+									<img style="float:left; cursor:pointer; background-color:{{data1.MauDuBao}}" src ="img/no-map.png" />	
+								</span>
+								<span style="width:60%; height:40px; float:left; text-align:center; margin:auto auto; " ng-click="LoadForecaseRainItem(data1,data.from,data.to)" ><label style="font-weight:bold; display: inline-block;">{{data1.StationName}}</label></span>
+							</div>
+							<span>
+								<h3 ng-click="LoadForecaseRainItem(data1,data.from,data.to)" style="margin-top: 15px; color:red; text-align: center; float:left; width:100%">{{data1.LuongMuaDuBaoThoiDoan}} mm</h3>
+							</span>		
+							</li>	
+						</ul>
+						<div class="list" ng-switch-when="Xem theo lưu vực">
+							Xem theo lưu vực
+						</div>
+						<div class="list" ng-switch-when="Xem theo tỉnh">
+							Xem theo hồ
+						</div>
+					</div>	
+				</div>
+			</ion-scroll>
+		</div>
+	</div>
+	<div style="margin-top:15px;">
+		<div>
+			<h2 class="title_ct">Dự báo dòng chảy đến hồ <span style="color:red; font-size:13px" ng-show="ListDataDongChayDuBao.length!=0">( {{ListDataDongChayDuBao.length}} hồ mực nước lớn)</span></h2>
+			<h2 class="title_ct_sub">Từ ngày: {{from | date:'dd/MM/yyyy'}}  Đến ngày: {{to | date:'dd/MM/yyyy'}}</h2>
+		</div>
+		<div>
+			<ion-scroll zooming="true" direction="x" style="width: 100%;" scrollbar-x="false">
+				<div style="width: {{ListDataDongChayDuBao.length* 128}}px; height: 100%; ">
+					<ul class="forecast_3day">
+						<li ng-repeat="data1 in ListDataDongChayDuBao | filter: {LakeName: search} ">
+							<div style="width:100%; float:left; overflow:hidden;">
+								<span ng-if="data1.GeomId!=null">
+									<img style="float:left; cursor:pointer;" src ="img/icon11.PNG" ng-click="_fun._goMap('Dự báo dòng chảy đến hồ', 'TramKTTV', '{{data1.GeomId}}')"/>	
+								</span>
+								<span ng-if="data1.GeomId==null">
+									<img style="float:left; cursor:pointer;" src ="img/no-map.PNG"/>	
+								</span>
+								<span style="width:60%; height:40px; float:left; text-align:center; margin:auto auto; " ng-click="LoadForecaseFlowItem(data1,data.from,data.to )" ><label style="font-weight:bold; display: inline-block;">{{data1.LakeName}}</label></span>
+							</div>
+							<span ng-click="LoadForecaseFlowItem(data1,data.from,data.to )" style="float: left;">
+								<h3 ng-if="(data1.MucNuocDuBao < 0)" style="margin-top: 5px; margin-bottom:0px; width:100%; float:left;color:red; text-align: center; font-size:12px;" > < MNC = {{data1.MucNuocDuBao*(-1) |  number : 0}} m</h3>
+								<!-- <h3 ng-if="(data1.MucNuocDuBao >= 0)" style="margin-top: 5px; margin-bottom:0px; width:100%; float:left;color:red; text-align: center; font-size:12px;" > Sai quy trình</h3><h3 ng-if="(data1.MucNuocDuBao >= 0)" style="margin-top: 5px; margin-bottom:0px; width:100%; float:left;color:red; text-align: center; font-size:12px;" > Sai quy trình</h3> -->
+								<h3 style="margin-top: 5px;margin-bottom:0px; width:100%; float:left;color:red; text-align: center; font-size:12px;">Q.đến: {{data1.LuuLuongDenDuBao |  number : 0}} m<span style="vertical-align: super;font-size:10px;" >3</span>/s</h3>
+								<p style="font-weight: 500; font-size: 10px; color: #555; width:100%; float:left; margin:0px; text-align: center;">Lúc {{data1.ThoiGian | date:'HH:mm dd/MM/yyyy '}}</p>
+							</span>
+						</li>		
+					</ul>
+				</div>
+			</ion-scroll>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>
+
+                

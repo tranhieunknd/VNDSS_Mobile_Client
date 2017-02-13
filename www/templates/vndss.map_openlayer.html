@@ -1,0 +1,17 @@
+<ion-header-bar class="warning_rain bar-positive">
+	<button class="button button-icon button-clear icon-back ion-ios-arrow-left" ng-click="_fun._backHistory()"></button>
+	<h2 class="title">{{data.titlePage}}</h2>
+	<div class="buttons">
+		<button class="button button-icon button-clear ion-android-home" ng-click="_fun._backHome()" ></button>
+	</div>
+</ion-header-bar>
+<ion-content>
+	<div id="map" class="map" style="height: 500px; width: 100%" ng-init="initMap()"></div>
+	<!-- <div id="popup" ></div> -->
+	<div id="popup" class="ol-popup">
+		<!-- <a href="#" ng-click="onclick()" class="ol-popup-closer"></a> -->
+		<div id="popup-content"></div>
+	</div>
+	<!-- <openlayers style="margin-top: 20px;" ol-center="london" height="400"></openlayers> -->
+	<!-- <button ng-click="addLayer()"> add view</button> -->
+</ion-content>

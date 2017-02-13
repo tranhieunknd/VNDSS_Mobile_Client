@@ -1,0 +1,160 @@
+<ion-view title="Cảnh báo">
+	<ion-content class="warning_ct has-header padding" style="padding:0px 3px !important;">
+		
+		<div ng-init="initRain()" >
+			
+			<div style="width: 100%;" >
+				<div style="width: 65%;float:left" >
+					<h2 class="title_ct" style="width: 100%; padding-top:5px ">Cảnh báo mưa
+						<span style=" font-size:13px; color:red" ng-if="data.selection.type ==0&&ListDataCBMuaHientai.length !=0">( {{ListDataCBMuaHientai.length}} trạm có mưa lớn)</span>
+						<span style=" font-size:13px; color:red" ng-if="data.selection.type ==1&&ListDataCBMuaMotNgay.length !=0">( {{ListDataCBMuaMotNgay.length}} trạm có mưa lớn)</span>
+						<span style=" font-size:13px; color:red" ng-if="data.selection.type ==3&&ListDataCBMuaBaNgay.length !=0">( {{ListDataCBMuaBaNgay.length}} trạm có mưa lớn)</span>
+					</h2>
+				</div>
+				<div style="width: 35%;float:right" >
+					
+					<label  class="item item-input item-select">
+						<select ng-model="data.selection" ng-options="item.typename for item in items" style="border: 1px solid #f1f1f1; top:0px; " ng-change="changecbb()">
+						</select>
+					</label>
+				</div>
+			</div>
+			<div>
+				<ion-scroll zooming="true" direction="x" style="width: 100%; " scrollbar-x="false">
+					<span ng-if="data.selection.type ==0 && ListDataCBMuaHientai.length ==0"  style="text-align:center; color: blue; font-size:13px">Không có dữ liệu cảnh báo</span>
+					<span ng-if="data.selection.type ==1 && ListDataCBMuaMotNgay.length ==0"  style="text-align:center; color: blue; font-size:13px">Không có dữ liệu cảnh báo</span>
+					<span ng-if="data.selection.type ==3 && ListDataCBMuaBaNgay.length ==0"  style="text-align:center; color: blue; font-size:13px">Không có dữ liệu cảnh báo</span>
+					
+					<div  ng-if="data.selection.type ==3 && ListDataCBMuaBaNgay.length !=0"  style="width: {{ListDataCBMuaBaNgay.length*128}}px; height: 100%; ">
+						<div class="ct" >
+							<ul  class="forecast_3day" style="height: 100px;" >
+								<li  ng-if="data.selection.type ==3" ng-show="ListDataCBMuaBaNgay.length !=0" ng-repeat="data1 in ListDataCBMuaBaNgay | filter: {StationName: search}">
+									<div style="width:100%; float:left; overflow:hidden;">
+										<span ng-show="data1.GeomId!=null">
+											<img ng-if="data1.IsTramThuyVanBitType" style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/have-map.png"  ng-click="viewmapdetail('Cảnh báo mưa','TramKTTV', '{{data1.GeomId}}' * 1)"/>
+											<img ng-if="!data1.IsTramThuyVanBitType" style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/have-map.png"  ng-click="viewmapdetail('Cảnh báo mưa','TramDoMua', '{{data1.GeomId}}' * 1)"/>
+										</span>
+										<span ng-show="data1.GeomId==null">
+											<img style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/no-map.png"  />
+											
+										</span>
+										<span style="width:60%; height:40px; float:left; text-align:center; margin:auto auto; " ng-click="LoadWarningRainItem(data1,data.selection.type,data.from,data.to )"><label style="font-weight:bold; display: inline-block;">{{data1.StationName}}</label></span>
+									</div>
+									<h3 ng-if="data.selection.type ==3" ng-click="LoadWarningRainItem(data1,data.selection.type,data.from,data.to )" style="margin-top: 10px; color:red; text-align: center; float:left; width:100%">{{data1.LM3 }} mm</h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div  ng-if="data.selection.type ==1 && ListDataCBMuaMotNgay.length !=0"  style="width: {{ListDataCBMuaMotNgay.length*128}}px; height: 100%; ">
+						<div class="ct" >
+							
+							<ul  class="forecast_3day" style="height: 100px;" >
+								
+								<li  ng-if="data.selection.type ==1" ng-show="ListDataCBMuaMotNgay.length !=0" ng-repeat="data1 in ListDataCBMuaMotNgay| filter: {StationName: search} ">
+								
+									<div style="width:100%; float:left; overflow:hidden;">
+										<span ng-show="data1.GeomId!=null">
+											<img ng-if="data1.IsTramThuyVanBitType" style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/have-map.png"  ng-click="viewmapdetail('Cảnh báo mưa','TramKTTV', '{{data1.GeomId}}' * 1)"/>
+											<img ng-if="!data1.IsTramThuyVanBitType" style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/have-map.png"  ng-click="viewmapdetail('Cảnh báo mưa','TramDoMua', '{{data1.GeomId}}' * 1)"/>
+										</span>
+										<span ng-show="data1.GeomId==null">
+											<img style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/no-map.png"  />
+										</span>
+										<span style="width:60%; height:40px; float:left; text-align:center; margin:auto auto; " ng-click="LoadWarningRainItem(data1,data.selection.type,data.from,data.to )"><label style="font-weight:bold; display: inline-block;">{{data1.StationName}}</label></span>
+									</div>
+									
+									<h3 ng-if="data.selection.type ==1" ng-click="LoadWarningRainItem(data1,data.selection.type,data.from,data.to )" style="margin-top: 10px; color:red; text-align: center; float:left; width:100%">{{data1.LM1 }} mm</h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div  ng-if="data.selection.type ==0 && ListDataCBMuaHientai.length !=0"  style="width: {{ListDataCBMuaHientai.length*128}}px; height: 100%; ">
+						<div class="ct" >
+							
+							<ul  class="forecast_3day" style="height: 100px;" >
+								
+								<li  ng-if="data.selection.type ==0" ng-show="ListDataCBMuaHientai.length !=0" ng-repeat="data1 in ListDataCBMuaHientai | filter: {StationName: search} ">
+								
+									<div style="width:100%; float:left; overflow:hidden;">
+										<span ng-show="data1.GeomId!=null"> 
+											<img ng-if="data1.IsTramThuyVanBitType" style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/have-map.png"  ng-click="viewmapdetail('Cảnh báo mưa','TramKTTV', '{{data1.GeomId}}' * 1)"/>	
+											<img ng-if="!data1.IsTramThuyVanBitType" style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/have-map.png"  ng-click="viewmapdetail('Cảnh báo mưa','TramDoMua', '{{data1.GeomId}}' * 1)"/>	
+										</span>
+										<span ng-show="data1.GeomId==null">
+											<img style="float:left; cursor:pointer; background-color:{{data1.MauCanhBao}}" src ="img/no-map.png" />	
+										</span>
+										<span style="width:60%; height:40px; float:left; text-align:center; margin:auto auto; " ng-click="LoadWarningRainItem(data1,data.selection.type,data.from,data.to )"><label style="font-weight:bold; display: inline-block;">{{data1.StationName}}</label></span>
+									</div>
+									<h3 ng-if="data.selection.type ==0" ng-click="LoadWarningRainItem(data1,data.selection.type,data.from,data.to )" style="margin-top: 10px; color:red; text-align: center; float:left; width:100%">{{data1.LM0 }}  mm</h3>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</ion-scroll>
+			</div>
+		</div>
+		<div style="margin-top:15px;">
+			<div>
+				<h2 class="title_ct">Cảnh báo mực nước hồ <span style=" font-size:13px; color:red" ng-show="ListDataCBMucNuocHo.length!=0">( {{ListDataCBMucNuocHo.length}} hồ có cảnh báo)</span></h2>
+			</div>
+			<div>
+				<ion-scroll zooming="true" direction="x" style="width: 100%;" scrollbar-x="false">
+					<span ng-show="ListDataCBMucNuocHo.length==0" style="text-align:center; color: blue; font-size:13px">Không có dữ liệu cảnh báo</span>
+					<div ng-if="ListDataCBMucNuocHo.length!=0" style="width: {{ListDataCBMucNuocHo.length * 128}}px ; height: 100%; ">
+						<ul class="forecast_3day" style="height:140px;">
+							
+							<li ng-show="ListDataCBMucNuocHo.length!=0" ng-repeat="data1 in ListDataCBMucNuocHo | filter: {LakeName: search}">
+								<div style="width:100%; float:left; overflow:hidden;">
+									<span ng-show="data1.GeomId!=null">
+										<img  style="float:left; cursor:pointer ;background-color:{{data1.MauCanhBao}}" src ="img/have-map.png" ng-click="viewmapdetail('Cảnh báo mực nước hồ','ThuyHe','{{data1.GeomId}}')"/>	
+									</span>
+									<span ng-show="data1.GeomId==null">
+										<img  style="float:left; cursor:pointer ;background-color:{{data1.MauCanhBao}} " src ="img/no-map.png"/>	
+									</span>
+									<span style="width:60%; height:40px; float:left; text-align:center; margin:auto auto; " ng-click="LoadWarningFlowItem(data1,data.from,data.to )">
+										<label style="font-weight:bold; display: inline-block;">{{data1.LakeName}}</label>
+									</span>
+								</div>
+								<span  style="float:left;">
+									<h3 ng-if="(data1.SoSanh1 != '')" style="margin-top: 5px; margin-bottom:0px; width:100%; float:left;color:red; text-align: center; font-size:12px;">{{data1.SoSanh1}}</h3>
+									<h3 ng-if="(data1.SoSanh2 != '')" style="margin-top: 5px; margin-bottom:0px; width:100%; float:left;color:red; text-align: center; font-size:12px;">{{data1.SoSanh2}}</h3>
+									<h3 ng-if="(data1.MucNuocChet != null)" style="margin-top: 5px; margin-bottom:0px; width:100%; float:left;color:red; text-align: center; font-size:12px;"> MNC : {{data1.MucNuocChet  |  number : 2}} m</h3>
+									<h3 ng-if="(data1.MucNuocChet == null)" style="margin-top: 5px; margin-bottom:0px; width:100%; float:left;color:red; text-align: center; font-size:12px;"> Sai quy trình</h3>
+									<h3 ng-if="(data1.TongLuuLuongDen != null)" style="margin-top: 5px;margin-bottom:0px; width:100%; float:left; text-align: center; font-size:12px;">Q.đến: {{data1.TongLuuLuongDen |  number : 2}} m<span style="vertical-align: super;font-size:10px;" >3</span>/s</h3>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</ion-scroll>
+			</div>
+		</div>
+		<div style="margin-top:15px;">
+			<h2 class="title_ct">Cảnh báo mực nước sông <span style=" font-size:13px; color:red" ng-show="ListCBDataMucNuocSong.length!=0">( {{ListCBDataMucNuocSong.length}} sông có cảnh báo)</span></h2>
+			<div>
+				<ion-scroll zooming="true" direction="x" style="width: 100%;" scrollbar-x="false">
+					<span ng-show="ListCBDataMucNuocSong.length==0" style="text-align:center; color: blue ; font-size:13px">Không có dữ liệu cảnh báo</span>
+					<div style="width: {{ListCBDataMucNuocSong.length*128}}px; height: 100%; ">
+						<ul class="forecast_3day">
+							<li ng-show="ListCBDataMucNuocSong.length!=0" ng-repeat="data1 in ListCBDataMucNuocSong  | filter: {StationName: search}">
+								<div style="width:100%; float:left; overflow:hidden;">
+									<span ng-show="data1.GeomId!=null">
+										<img style="float:left; cursor:pointer;background-color:{{data1.MauCanhBao}}" src ="img/have-map.png" ng-click="viewmapdetail('Cảnh báo mực nước sông','TramKTTV','{{data1.GeomId}}')"/>	
+									</span>
+									<span ng-show="data1.GeomId==null">
+										<img style="float:left; cursor:pointer;background-color:{{data1.MauCanhBao}}" src ="img/no-map.png" />	
+									</span>
+									<span style="width:60%; height:40px; float:left; text-align:center; margin:auto auto; " ng-click="LoadWarningWaveItem(data1,data.from,data.to )"><label style="font-weight:bold; display: inline-block;">{{data1.StationName}}</label></span>
+								</div>
+								<span ng-click="LoadWarningWaveItem(data1,data.from,data.to )" style="float:left;">
+									<h3 ng-if="data1.SoSanh1!=null" style="margin-top: 10px; color:red; font-size:12px;text-align: center; float:left; width:100%">{{data1.SoSanh1}}</h3>
+									<h3 ng-if="data1.SoSanh2!=null" style="margin-top: 0px; color:red; font-size:12px;text-align: center; float:left; width:100%">{{data1.SoSanh2}}</h3>
+									<!--<h3 style="margin-top: 0px;font-size:12px; color:red; text-align: center; float:left; width:100%"> <i class="icon ion-ios-arrow-forward"></i> BD2: {{data1.BD2 |  number : 2}}mm</h3>-->
+								</span>
+							</li>
+						</ul>
+					</div>
+				</ion-scroll>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

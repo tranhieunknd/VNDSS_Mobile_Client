@@ -1,0 +1,1 @@
+controllerGlobal = angular.module('vndss.controllers', ['ionic','vndss.logic', 'vndss.helper', 'ngCordova', 'chart.js', 'angles', 'openlayers-directive','amChartsDirective', 'datarefresh']);

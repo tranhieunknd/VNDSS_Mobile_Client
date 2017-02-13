@@ -1,0 +1,35 @@
+<ion-header-bar class="bar-positive">
+</ion-header-bar>
+<ion-content>
+	<ion-list>
+		<ion-item>
+			<button class="button" ng-click="clickservice()">demo connect service</button>
+		</ion-item>
+		<ion-item>
+			<button class="button" ng-click="showchart()">show chart</button>
+		</ion-item>
+		<ion-item>
+			<button class="button" ng-click="addnotechart()">Add node chart</button>
+		</ion-item>
+		<ion-item>
+			<button class="button" ng-click="changechart()">Change node chart</button>
+		</ion-item>
+		<ion-item>
+			<a class="button" href="#/apphome/map">Map</a>
+		</ion-item>
+		<ion-item>
+			{{data}}
+		</ion-item>
+		<ion-item>
+			<!-- <canvas id="bar" class="chart chart-line" data="graph.data" labels="graph.labels" series='graph.series' height="50"></canvas> -->
+			<canvas id="angularChart" class="chart chart-line" data="angularChart.data" labels="angularChart.labels" series='angularChart.series' height="150"></canvas>
+		</ion-item>
+	</ion-list>
+	<!-- <div style="height: 100px; width: 100px;">
+		<canvas style="height: 100px; width: 100px;" id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick" >
+		</canvas> 
+	</div> -->
+	<h1>Simple Line chart for Ionic</h1>
+    <canvas id="bar" class="chart chart-line" chart-legend="true" data="graph.data" labels="graph.labels" series='graph.series' height="50"></canvas>
+	
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header-bar class="warning_rain bar-positive">
+	<button class="button button-icon button-clear icon-back ion-ios-arrow-left" ng-click="back()"></button>
+	<h2 class="title">Camera</h2>
+	<div class="buttons">
+		<button class="button button-icon button-clear ion-ios-search-strong" ng-click="showFilterBar()"></button>
+		<button class="button button-icon button-clear ion-android-home" ng-click="backHome()"></button>
+		<button class="button button-icon button-clear ion-ios-location"></button>
+	</div>
+</ion-header-bar>
+
+<ion-content class="warning_ct has-header padding" ng-init="initcamera()">
+	<div style="width:100%">
+
+		<div class="list cbx" style="float:left">
+			<label class="item item-input item-select">
+				<span class="icon-rain"><img style="width:22px; height:15px" src="img/video-camera-1.png" /></span>	  
+				<select ng-model="data.selectlake" ng-options="item.lakename for item in dataServer" ng-change="changecbb()"></select>
+				<!-- <select ng-model="data.tmp" ng-options="item.name for item in camera" ng-change="changecbb()"></select> -->
+	  		</label>
+		</div>
+
+		<div class="warning_rain bar-positive" style="background-color:white ; float:right">
+			<button class="button" style="font-size:10px; min-height:30px;line-height:25px" 
+				ng-click="connect()" ng-show="data.showbuttonconnect">Kết nối</button>
+			<button class="button" style="font-size:10px; min-height:30px; line-height:25px" 
+				ng-click="disconnect()" ng-show="!data.showbuttonconnect">Ngắt kết nối</button>
+		</div>
+	</div>
+	<div style="clear:both"></div>
+
+	<div style="margin-top:10px ">
+		<img ng-repeat="item in lakecurrent.lstcamera" id="{{item.cameracode}}"
+			src="http://103.15.50.142:8032/GetJPEGFrame.aspx?req={{item.cameracode}}&PAM=ABC&NoCache=1 " style="width: 100%; height: {{$window.innerwidth * 0.8}}px">
+	</div>
+</ion-content>

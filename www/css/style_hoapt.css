@@ -1,0 +1,516 @@
+/* 30-03 HoaPT: Login*/
+
+.login {
+    padding-top: 20%;
+    background: #fff;
+}
+
+    .login img {
+        width: 150px;
+        margin-bottom: 15%;
+    }
+
+    .login .logo {
+        text-align: center;
+        width: 100%;
+    }
+
+    .login input[type="text"], .login input[type="password"] {
+        padding-left: 40px;
+    }
+
+    .login i.icon {
+        left: 0px;
+    }
+
+    .login .list.list-inset {
+        border-radius: 20px;
+        background: #E0E0E0;
+    }
+
+    .login input {
+        font-size: 15px;
+    }
+
+    .login .list.button-login {
+        margin: 20px 30px;
+    }
+
+        .login .list.button-login button {
+            border-radius: 20px;
+        }
+
+    .login input[type="checkbox"] {
+        margin-left: 30px;
+        margin-right: 10px;
+    }
+
+    .login .fogetpass {
+		display: none;
+        font-size: 13px;
+        font-style: italic;
+        float: right;
+        margin-right: 30px;
+        color: blue;
+        text-decoration: underline;
+    }
+	
+	.login .rememberlogin{
+		text-align: center;
+	}
+
+    .login i.icon {
+        position: absolute;
+        height: 100%;
+        top: 8px;
+        font-size: 24px;
+    }
+
+/*Cảnh báo mưa*/
+.warning_rain a.ion-search {
+    float: right;
+}
+
+.warning_rain_ct span {
+    color: red;
+}
+
+.warning_rain .title_header {
+    top: 0px;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 11px;
+}
+
+.warning_rain h2.title {
+    left: 50px !important;
+}
+
+.warning_rain_ct {
+    margin-top: 10px;
+}
+
+    .warning_rain_ct h2 {
+        font-weight: 500;
+    }
+
+    .warning_rain_ct .item-thumbnail-left img {
+        border-radius: inherit !important;
+    }
+
+    .warning_rain_ct .chart {
+        height: 140px;
+        border: 1px solid #F1F1F1;
+        margin: 5px;
+        background: #ffffff;
+    }
+
+======= .chart {
+    height: 300px;
+    border: 1px solid #F1F1F1;
+    margin: 5px;
+    background: #F1F1F1;
+}
+
+.header .col {
+    background-color: lightgrey;
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+    .col:last-child {
+        border-right: solid 1px grey;
+    }
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}
+
+/*Dự báo dòng chảy đến hồ*/
+.forecast_flow a.ion-search {
+    float: right;
+}
+
+.forecast_flow .title_header {
+    top: 0px;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 11px;
+}
+
+.forecast_flow h2.title {
+    left: 50px !important;
+}
+/*.forecast_flow_ct{margin-top:10px;}*/
+.forecast_flow_ct .item-thumbnail-left img {
+    border-radius: inherit !important;
+}
+
+.forecast_flow_ct .list {
+    background: #fafafa;
+    margin: 5px;
+    padding-bottom: 10px;
+}
+
+    .forecast_flow_ct .list p {
+        margin: 0px;
+    }
+
+    .forecast_flow_ct .list img {
+        float: left;
+        width: 65px;
+    }
+
+.forecast_rain_ct .chart {
+    height: 180px;
+    margin: 5px;
+    background: #ffff;
+}
+
+.forecast_flow_ct .chart {
+    height: 140px;
+    margin: 5px;
+    background: #ffff;
+}
+
+.forecast_flow_ct h2.title_ct {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/*Dự báo mưa*/
+.forecast_rain a.ion-search {
+    float: right;
+}
+
+.forecast_rain .title_header {
+    top: 0px;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 11px;
+}
+
+.forecast_rain h2.title {
+    left: 35px !important;
+}
+
+.forecast_rain_ct .item-thumbnail-left img {
+    border-radius: inherit !important;
+}
+
+.forecast_rain_ct .list {
+    background: #F1F1F1;
+    margin: 5px;
+    padding-bottom: 10px;
+}
+
+.forecast_rain_ct h2.title_ct {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.header_ct img, .forecast_flow_ct .list img {
+    position: absolute;
+    left: 5px;
+}
+
+.forecast_rain_ct .header_ct {
+    text-align: center;
+    background: #fafafa;
+    overflow: hidden;
+}
+
+    .forecast_rain_ct .header_ct p {
+        margin-bottom: 10px;
+    }
+
+    .forecast_rain_ct .header_ct h2 {
+        font-size: 22px;
+        padding-top: 10px;
+    }
+
+.forecast_rain_ct .view_more {
+    float: right;
+    color: blue;
+    padding-right: 5px;
+    font-style: italic;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.forecast_rain_ct .row .col {
+    text-align: center;
+}
+
+.forecast_rain_ct .row.header .col {
+    background: #f1f1f1;
+}
+
+.forecast_flow_ct .row .col {
+    text-align: center;
+}
+
+.forecast_flow_ct .row.header .col {
+    background: #f1f1f1;
+}
+
+/*danh sách cảnh báo mưa*/
+.list_forecast_rain_ct h2.title_ct {
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+.list_forecast_rain_ct .list .item-thumbnail-left img {
+    border-radius: inherit !important;
+    margin-bottom: 10px;
+}
+
+.forecast_flow_ct h2 {
+    font-size: 22px;
+    padding-top: 10px;
+}
+
+/*danh sách cảnh báo dòng chảy*/
+.list_forecast_flow_ct h2.title_ct {
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+.list_forecast_flow_ct .list .item-thumbnail-left img {
+    border-radius: inherit !important;
+    margin-bottom: 10px;
+}
+
+.list_warning_wave_ct .list .item-thumbnail-left img {
+    border-radius: inherit !important;
+    margin-bottom: 10px;
+}
+
+.list_warning_wave_ct h2.title_ct {
+    font-size: 12px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+/*Trang chủ*/
+.hometab {
+    font-size: 17px;
+    line-height: 40px;
+}
+
+.tabs {
+    height: 42px;
+    line-height: 40px;
+    color: #111;
+}
+
+.tabs-striped .tabs {
+    background-color: #F5F4F4;
+}
+
+.tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
+    border-color: #0c60ee;
+}
+
+.warning_ct h2.title_ct {
+    font-size: 16px;
+    margin-left: 5px;
+    width: 100%;
+    float: left;
+    font-weight: 500;
+}
+
+.warning_ct h2.title_ct_sub {
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.warning_ct .list.cbx {
+    border: 1px solid #f1f1f1;
+    width: 43%;
+    float: right;
+    max-height: 30px;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom: 7px;
+    margin-top: 0px;
+}
+
+.item-select select {
+    padding: 0 30px 0 10px;
+    max-width: 80% !important;
+    top: -3px;
+    font-size: 11px;
+}
+
+.warning_ct .list .item, .list_forecast_rain_ct .ct .item, .list_warning_wave_ct .item, .list_forecast_flow_ct .item {
+    min-height: 30px;
+    border: none;
+    top: 3px;
+    margin-bottom: 1px;
+    border-bottom: 1px solid #cccccc;
+    background: #fafafa;
+}
+
+.warning_ct .item {
+    min-height: 30px;
+    border: none;
+    top: 3px;
+}
+
+.warning_ct .icon-rain img {
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    margin-left: -15px;
+    top: 5px;
+}
+
+.bar .button.button-clear {
+    width: 30px;
+    min-width: 30px;
+    margin: 0px;
+}
+
+.bar.item-input-inset .item-input-wrapper {
+    margin-left: 10px;
+}
+
+.list-detail-vndss {
+    background: #fafafa;
+}
+
+.filter-bar .filter-bar-wrapper .item-input-inset .item-input-wrapper .filter-bar-clear {
+    display: none;
+}
+
+.platform-android .filter-bar-wrapper .item-input-inset .filter-bar-cancel {
+    box-shadow: none;
+}
+
+.platform-android .filter-bar .filter-bar-positive .item-input-wrapper {
+    border: none !important;
+}
+
+.warning_ct .slider {
+    float: left;
+}
+
+.slider {
+    height: 100%;
+}
+
+.slider-slide {
+    padding-top: 30px;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    width: 100%;
+}
+
+.blue {
+    width: 100%;
+    background-color: blue;
+    padding-right: 20px !important;
+}
+
+.yellow {
+    width: 100%;
+    background-color: yellow;
+}
+
+.pink {
+    width: 100%;
+    background-color: pink;
+}
+
+.forecast_3day li {
+    width: 112px;
+    background: #fafafa;
+    border: 1px solid #dddddd;
+    float: left;
+    display: block;
+    height: 100%;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+    .forecast_3day li:last-child {
+        margin-right: 0px;
+    }
+
+.forecast_3day {
+    display: block;
+    height: 120px;
+    overflow: hidden;
+    margin: 5px;
+}
+
+    .forecast_3day li h3 {
+        font-size: 15px;
+        color: black !important;
+    }
+
+    .forecast_3day img {
+        width: 40px;
+    }
+
+.time_max_flow {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 10px;
+}
+
+.list_forecast_rain_ct .list .item.item-thumbnail-left.cap1 img {
+    width: 55px !important;
+    height: 55px !important;
+}
+
+.list_forecast_rain_ct .list span {
+    margin-left: -15px;
+    overflow: hidden;
+    display: inherit;
+}
+
+.list_forecast_flow_ct .list .item.item-thumbnail-left.cap1 img {
+    width: 65px;
+}
+
+.list_forecast_flow_ct .list .item.item-thumbnail-left.cap1 img {
+    width: 65px;
+}
+
+.list_warning_wave_ct .list .item.item-thumbnail-left.cap1 img {
+    width: 65px;
+}
+
+.forecast_flow_ct .item.item-thumbnail-left.cap1 img {
+    width: 65px;
+}
+
+.bar .button, .bar .button.button-flat, .bar .button.button-large, .button, .button.button-flat, .button.button-large {
+    padding: 0px;
+}
+
+/* biểu đồ*/
+.card {
+    box-shadow: none;
+}
+
+    .card .item {
+        padding: 0px;
+    }
+
+
+.tab-item.tab-item-active{
+	border-bottom: 2px solid #0c60ee;
+}

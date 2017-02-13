@@ -1,0 +1,30 @@
+<ion-header-bar class="forecast_rain bar-positive">
+	<div ng-include="'templates/vndss.header_listpage.html'"></div>
+</ion-header-bar>
+<ion-content class="list_forecast_rain_ct">
+	<div style="width: 100%;display:none">
+		<label class="item item-input item-select">
+			<select ng-model="selection" style="border: 1px solid #f1f1f1; top:0px; " disabled="disabled" ng-options="item for item in items">
+				<code>selection={{selection}}</code>
+			</select>
+		</label>
+	</div>
+	<h2 class="title_ct">Từ ngày: {{data.from | date:'dd/MM/yyyy'}}  Đến ngày: {{data.to | date:'dd/MM/yyyy'}}</h2>
+	
+	<div class="ct" ng-switch on="selection">
+		<div class="list" ng-switch-default="Xem theo hồ">
+			<a class="item item-thumbnail-left cap1" href="#/apphome/forecast_rain/{{data1.StationCode}}/{{data.from}}/{{data.to}}" ng-repeat="data1 in ListDataMuadubao | filter: {StationName: search}">
+				<img style="background-color:{{data1.MauDuBao}};height:65px" src="img/have-map.png" >
+				<span> 				
+				<h2>{{data1.StationName}}</h2>
+				<p>Lượng mưa: {{data1.LuongMuaDuBaoThoiDoan | number : 3}} mm</p> </span>	  
+			</a>
+		</div>
+		<div class="list" ng-switch-when="Xem theo lưu vực">
+			Xem theo lưu vực
+		</div>
+		<div class="list" ng-switch-when="Xem theo tỉnh">
+			Xem theo tỉnh
+		</div>
+	</div>
+</ion-content>

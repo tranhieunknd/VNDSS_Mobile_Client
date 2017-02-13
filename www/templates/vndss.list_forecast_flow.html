@@ -1,0 +1,16 @@
+<ion-header-bar class="forecast_rain bar-positive">
+	<div ng-include="'templates/vndss.header_listpage.html'"></div>
+</ion-header-bar>
+<ion-content class="list_forecast_flow_ct">
+	<h2 class="title_ct">Từ ngày: {{data.from | date:'dd/MM/yyyy'}}  Đến ngày: {{data.to | date:'dd/MM/yyyy'}}</h2>
+	<div class="list">
+		<a class="item item-thumbnail-left cap1" href="#/apphome/forecast_flow/{{data1.LakeRef}}/{{data.from}}/{{data.to}}/{{data1.LakeName}}/{{data1.LuongMua}}/{{data1.LuuLuongDenDuBao}}" ng-repeat="data1 in ListDataDongChayDuBao| filter : {LakeName:search}" >
+			<img style="height:65px" src="img/list1.PNG">
+			<span> 			
+			<h2>{{data1.LakeName}}</h2>
+			<p>Mực nước: {{data1.LuongMua| number : 3}} m</p> 	 
+			<p>Dòng chảy đến hồ: {{data1.LuuLuongDenDuBao| number : 3}} m<span style="vertical-align: super;font-size:10px;" >3</span>/s</p> </span> 
+			<span class="time_max_flow">{{data1.ThoiGian  | date:'dd/MM/yyyy'}}</span> 	  
+		</a>
+	</div>
+</ion-content>

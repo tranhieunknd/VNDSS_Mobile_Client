@@ -1,0 +1,38 @@
+<ion-header-bar class="forecast_rain bar-positive">
+	<div ng-include="'templates/vndss.header_listpage.html'"></div>
+</ion-header-bar>
+<ion-content class="list_forecast_flow_ct">
+
+	<div style="width: 100%; display:none">
+		<label class="item item-input item-select">
+			<select ng-model="selection" style="border: 1px solid #f1f1f1; top:0px; " disabled="disabled" ng-options="item for item in items">
+				<code>selection={{selection}}</code>
+			</select>
+		</label>
+	</div>
+	
+	
+	<div class="ct" ng-switch on="selection">
+		<div class="list" ng-switch-default="Xem theo hồ"	>	
+			<span ng-show="checkCanhBaoMucNuocHo==0" style="text-align:center; color: blue">Không có dữ liệu cảnh báo</span>
+			<div ng-show="checkCanhBaoMucNuocHo!=0" class="item item-thumbnail-left cap1"  
+			ng-repeat="data1 in ListDataCBMucNuocHo | filter: {LakeName: search}" >
+				<img style="background-color:{{data1.MauCanhBao}}; height:65px" src="img/have-map.png" ng-click="_fun._goMap('Cảnh báo mực nước hồ','ThuyHe','{{data1.GeomId}}' * 1)">
+				<span> 	
+					<a style="text-decoration:none" href="#/apphome/warning_flow/{{data1.LakeCode}}">				
+				<h2 style="font-weight:500">{{data1.LakeName}}</h2>
+				<p>Mực nước: {{data1.MucNuocThuongLuu| number : 2}} m</p>
+				<p>Dòng chảy đến hồ: {{data1.TongLuuLuongDen| number : 2}} m<span style="vertical-align: super;font-size:10px;" >3</span>/s</p> </a></span> 
+				<span class="time_max_flow">{{data1.ThoiGian  | date:'dd/MM/yyyy'}}</span> 	
+				
+			</div>
+		</div>
+		<div class="list" ng-switch-when="Xem theo lưu vực">
+			Xem theo lưu vực
+		</div>
+		<div class="list" ng-switch-when="Xem theo tỉnh">
+			Xem theo tỉnh
+		</div>
+	</div>
+	
+</ion-content>

@@ -1,0 +1,22 @@
+<ion-header-bar class="forecast_rain bar-positive">
+	<div ng-include="'templates/vndss.header_listpage.html'"></div>
+</ion-header-bar>
+<ion-content class="list_warning_wave_ct">
+	<div  style="padding-top:10px" class="ct">
+		<div  ng-show="ListCBDataMucNuocSong.length!=0" class="list" >
+			<div class="item item-thumbnail-left cap1"  ng-repeat="data1 in ListCBDataMucNuocSong | filter: {StationName: search}" >
+				<img style="background-color:{{data1.MauCanhBao}}; height:65px" src="img/have-map.png" ng-click="_fun._goMap('Cảnh báo mực nước sông','TramKTTV','{{data1.GeomId}}' * 1)">
+				<a style="text-decoration:none" href="#/apphome/warning_wave/{{data1.StationFK}}"><span> 			
+					<h2 style="font-weight:500">{{data1.StationName}}</h2>
+					<p>Mực nước: {{data1.GiaTri| number : 2}} m   {{data1.XuTheKml}}</p>
+					<p>Báo động: {{data1.IndexCanhBao}}</p>
+				</span>
+				<span class="time_max_flow">{{data1.ThoiGian  | date:'dd/MM/yyyy'}}</span> 
+				</a>				
+			</div>
+		</div>
+		 <div ng-show="ListCBDataMucNuocSong.length==0" class="list" style="text-align:center" >
+			<span >Không có dữ liệu cảnh báo</span>
+		</div> 
+	</div>
+</ion-content>

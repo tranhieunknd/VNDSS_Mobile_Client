@@ -1,0 +1,80 @@
+<link href="css/style_manhdv.css" rel="stylesheet">
+<ion-header-bar class="forecast_flow bar-positive">
+	<div ng-include="'templates/vndss.header_detail.html'"></div>
+</ion-header-bar>
+
+<ion-content class="forecast_flow_ct">
+	<!-- Thông tin chung -->
+	<div class="list" style="text-align:center;">
+		<img src="img/icon11.PNG" ng-click="_fun._goMap('Dự báo dòng chảy đến hồ', 'TramKTTV', '{{data.GeomId}}')" />
+		<h2>{{data.fdataname}}</h2>
+		<p style="color:red">Mực nước hồ: {{data.fdatamucnuoc|  number : 2}} m</p>
+		<p style="color:red; width:100%;">Dòng chảy đến hồ:  {{data.fdatadongchay|  number : 2}} m<sup>3</sup>/s</p>
+		<p>
+			<span>
+				Từ ngày:
+				<ionic-datepicker input-obj="datepickerObjectFrom">		
+				{{datepickerObjectFrom.inputDate| date:datepickerObjectFrom.dateFormat }}
+				</ionic-datepicker>
+			</span>
+			<span>
+				đến ngày:
+				<ionic-datepicker input-obj="datepickerObjectTo">		
+				{{datepickerObjectTo.inputDate| date:datepickerObjectTo.dateFormat }}
+				</ionic-datepicker>
+			</span>
+		</p>			
+	</div>
+
+		<!-- Phần Biểu đồ -->
+		
+	<div class="card">
+		<div class="item item-divider">
+			Biểu đồ diễn biến mực nước hồ
+		</div>
+		<ion-scroll zooming="true" direction="x" style="width: 94%; margin-left: 3px; margin-right:3px; height: 100%" scrollbar-x="false">
+			<div style="width: 500px;" class="item item-text-wrap">
+				<canvas id="lineLake" class="chart chart-line" chart-data="datavaluelake" chart-labels="labelslake" chart-legend="true"  auto-legend chart-series="serieslake" chart-options="{ scaleShowHorizontalLines: false,scaleShowVerticalLines: false,tooltipTemplate: '<%= value %> ',responsive: true,datasetFill : false} "></canvas>
+			</div>
+		</ion-scroll>
+	</div>
+
+	<div class="card">
+		<div class="item item-divider">
+			Biểu đồ dự báo dòng chảy đến hồ
+		</div>
+		<ion-scroll zooming="true" direction="x" style="width: 94%; margin-left: 3px; margin-right:3px; height: 100%" scrollbar-x="false">
+			<div style="width: 500px;"  class="item item-text-wrap">
+				<canvas id="line" class="chart chart-line" chart-data="datavalue" chart-labels="labels" chart-legend="true" auto-legend chart-series="series" chart-options="{ scaleShowHorizontalLines: false,scaleShowVerticalLines: false,tooltipTemplate: '<%= value %> ',responsive: true, datasetFill : false} "></canvas>
+			</div>
+		</ion-scroll>
+	</div>
+	
+		<!-- Phần Bảng dữ liệu -->
+	<div class="table" style="width: 100%;padding:5px;">
+		
+			<div >
+				<ion-scroll zooming="true" direction="x" style="width:100%;  height: 100%" scrollbar-x="false">
+					<div style="width: 600px; padding: 0px" class="row header">
+						<div class="col col-10">STT</div>
+						<div class="col col-20">Thời gian</div>
+						<div class="col col-20">Mưa dự báo (mm)</div>
+						<div class="col col-20">Mực nước hồ (m)</div> 
+						<div class="col col-20">Q. dự báo (m<sup>3</sup>/s)</div>
+						<div class="col col-10">Q. xả (m<sup>3</sup>/s)</div>
+					</div>
+					<ion-scroll zooming="true" direction="y" style="width: 600px; height: 400px; margin-top: 0px; paddning-top: 0px" scrollbar-y="false" scrollbar-x="false"> 
+						<div style="width: 600px; padding: 0px" class="row"  ng-repeat="(index,data) in data.DongChayDuBao ">
+							<div class="col col-5">{{index + 1}}</div>
+							<div class="col col-20">{{data.ThoiGian | date:'dd/MM/yyyy hh:mm'}}</div>
+							<div class="col col-20">{{data.LuuLuongDenDuBao |  number : 2}}</div>
+							<div class="col col-20">{{data.LuuLuongDen |  number : 2}}</div> 
+							<div class="col col-20">{{data.MucNuocDuBao |  number : 2}}</div>
+							<div class="col col-10">{{data.MucNuoc |  number : 2}}</div>
+						</div>
+					</ion-scroll>
+					
+				</ion-scroll>
+			</div>
+	</div>
+</ion-content>

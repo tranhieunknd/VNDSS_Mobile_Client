@@ -1,0 +1,74 @@
+<link href="css/style_manhdv.css" rel="stylesheet">
+  <ion-header-bar class="forecast_rain bar-positive" > 
+	<div ng-include="'templates/vndss.header_detail.html'"></div>
+	<!-- <button class="button button-icon button-clear icon-back ion-ios-arrow-left" ng-click="back()"></button>
+	<h2 class="title">Dự báo mưa</h2>
+	<div class="buttons">
+		<button class="button button-icon button-clear ion-ios-search-strong" ng-click="showFilterBar()"></button>
+		<button class="button button-icon button-clear ion-android-home" ng-click="backhome()"></button>
+		<button class="button button-icon button-clear ion-ios-location" ng-click="goMap()"></button>
+	</div> -->
+ 
+ </ion-header-bar> 
+
+<ion-content class="forecast_rain_ct">
+
+	<!-- Thông tin chung -->
+	<div class="header_ct"> 
+	    <img ng-if="data.GeomId!=null" style="background-color:{{data.MauDuBao}}; height:65px" src="img/have-map.png" style="float:left;" ng-click="_fun._goMap('Dự báo mưa', 'TramKTTV', '{{data.GeomId}}')">
+		  <img ng-if="data.GeomId==null" style="background-color:{{data.MauDuBao}}; height:65px" src="img/no-map.png" style="float:left;" >
+		<h2>{{data.StationName}}</h2>
+		<p style="color:red;">Tổng lượng: {{data.sum |  number : 2}} mm</p>
+		<p>
+			<span>
+				Từ ngày:
+				<ionic-datepicker input-obj="datepickerObjectFrom">		
+				{{datepickerObjectFrom.inputDate| date:datepickerObjectFrom.dateFormat}}
+				</ionic-datepicker>
+			</span>
+			<span>
+				đến ngày:
+				<ionic-datepicker input-obj="datepickerObjectTo">		
+				{{datepickerObjectTo.inputDate| date:datepickerObjectTo.dateFormat}}
+				</ionic-datepicker>
+			</span>
+		</p>		
+	</div>
+	<!-- Biểu đồ -->	
+	<div class="card">
+		<div class="item item-divider">
+			Biểu đồ dự báo mưa
+		</div>
+		<ion-scroll zooming="true" direction="x" style="width: 94%; margin-left: 3px; margin-right:3px; height: 100%" scrollbar-x="false">
+			<div style="width: 500px;"  class="item item-text-wrap" >
+				<canvas id="bar"  class="chart chart-bar" chart-data="datavalue" chart-labels="labels" chart-legend="true" chart-series="series" chart-options="{ scaleShowHorizontalLines: false,scaleShowVerticalLines: false,tooltipTemplate: '<%= value %> ',responsive: true} "></canvas>
+			</div>
+		</ion-scroll>
+	</div>
+
+	<!-- Bảng dữ liệu -->
+	<div class="table" style="width: 100%;padding:5px;">
+		<div  >
+			<ion-scroll zooming="true" direction="x" style="width:100%;  height: 100%" scrollbar-x="false">
+				
+				<div  style="width: 500px; padding: 0px" class="row header" >
+				  <div class="col col-10">STT</div>
+				  <div class="col col-25">T.G dự báo</div>
+				  <div class="col col-25">T.G phát dự báo</div>
+				  <div class="col col-20">Lượng mưa thời đoạn (mm)</div>
+				  <div class="col col-20">Lượng mưa lũy tích (mm)</div>  
+				</div>
+				<ion-scroll zooming="true" direction="y" style="width: 500px; height: 400px; margin-top: 0px; paddning-top: 0px" scrollbar-y="false" scrollbar-x="false"> 
+				  
+				<div style="width: 500px;padding: 0px" class="row" ng-repeat="(index,data1) in data.MuaDuBao ">
+				  <div class="col col-10" style="text-align: center">{{index + 1}}</div>
+				  <div class="col col-25">{{data1.ThoiGianDuBaoFormat}}</div>
+				  <div class="col col-25">{{data1.ThoiGianPhatDuBaoFormat}}</div>
+				  <div class="col col-20">{{data1.LuongMuaDuBaoThoiDoan |  number : 2}}</div>
+				  <div class="col col-20">{{data1.LuongMuaDuBaoLuyTich |  number : 2}}</div>    
+				</div>
+				</ion-scroll>
+			 </ion-scroll> 
+		</div>
+	</div>
+</ion-content>

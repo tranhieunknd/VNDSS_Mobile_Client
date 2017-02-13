@@ -1,0 +1,61 @@
+<ion-header-bar class="forecast_rain bar-positive">
+	<div ng-include="'templates/vndss.header_listpage.html'">
+	</div>
+</ion-header-bar>
+<ion-content class="list_forecast_rain_ct">
+
+	<div  style="padding-top:10px;" class="list cbx"  ng-init="initRain()" >
+		<label  style="min-height:22px" class="item item-input item-select">
+			<!-- <span class="icon-rain"><img style="width:22px; height:15px" src="img/40.gif" /></span>	  -->
+			<select ng-model="data.selection" style="border: 1px solid #f1f1f1; top:0px;" ng-options="item.typename for item in data.items" ng-change="changecbb()">
+			 <!--<code>selection={{selection}}</code>-->
+			</select>
+		</label>
+	</div>
+	<div style="clear:both"></div>
+	
+	<div class="ct" ng-switch on="data.selection.type" >
+		<div  ng-switch-default="0" ng-if="data.selection.type==0&&ListDataCBMuaHientai.length!=0" class="list"  >
+			<div class="item item-thumbnail-left cap1"  ng-repeat="data1 in ListDataCBMuaHientai | filter: {StationName: search}">
+				 <img ng-if="data1.IsTramThuyVanBitType" style="background-color:{{data1.MauCanhBao}}; height:65px"  src="img/have-map.png" ng-click="_fun._goMap('Cảnh báo mưa','TramKTTV','{{data1.GeomId}}' * 1)">
+				 <img ng-if="!data1.IsTramThuyVanBitType" style="background-color:{{data1.MauCanhBao}}; height:65px"  src="img/have-map.png" ng-click="_fun._goMap('Cảnh báo mưa','TramDoMua','{{data1.GeomId}}' * 1)">
+				<span> 				
+				<a style="text-decoration:none" href="#/apphome/warning_rain/{{data1.StationCode}}/0" ><h2>{{data1.StationName}}</h2>
+				<p ng-show="data.selection.type==0">Lượng mưa: {{data1.LM0 }} mm</p> 
+				<p ng-show="data.selection.type==1">Lượng mưa: {{data1.LM1 }} mm</p> 
+				<p ng-show="data.selection.type==3">Lượng mưa: {{data1.LM3 }} mm</p> 
+				</a>
+				</span>	  
+			</div>
+		</div> 
+		<div ng-switch-when="1"  ng-if="data.selection.type==1&&ListDataCBMuaMotNgay.length!=0" class="list"  >
+			<a  class="item item-thumbnail-left cap1" href="#/apphome/warning_rain/{{data1.StationCode}}/1" ng-repeat="data1 in ListDataCBMuaMotNgay | filter: {StationName: search}">
+				 <img style="background-color:{{data1.MauCanhBao}}; height:65px"  src="img/have-map.png" ng-click="_fun._goMap('Cảnh báo mưa','TramDoMua','{{data1.GeomId}}' * 1)" >
+				<span> 				
+				<h2>{{data1.StationName}}</h2>
+				<p ng-show="data.selection.type==0">Lượng mưa: {{data1.LM0 }} mm</p> 
+				<p ng-show="data.selection.type==1">Lượng mưa: {{data1.LM1 }} mm</p> 
+				<p ng-show="data.selection.type==3">Lượng mưa: {{data1.LM3 }} mm</p> 
+				
+				</span>	  
+			</a>
+		</div> 
+		<div  ng-switch-when="3"  ng-if="data.selection.type==3&&ListDataCBMuaBaNgay.length!=0" class="list"  >
+			<a  class="item item-thumbnail-left cap1" href="#/apphome/warning_rain/{{data1.StationCode}}/3" ng-repeat="data1 in ListDataCBMuaBaNgay | filter: {StationName: search}" ng-click="_fun._goMap('Cảnh báo mưa','TramDoMua','{{data1.GeomId}}' * 1)" >
+				 <img style="background-color:{{data1.MauCanhBao}}; height:65px"  src="img/have-map.png" >
+				<span> 				
+				<h2>{{data1.StationName}}</h2>
+				<p ng-show="data.selection.type==0">Lượng mưa: {{data1.LM0 }} mm</p> 
+				<p ng-show="data.selection.type==1">Lượng mưa: {{data1.LM1 }} mm</p> 
+				<p ng-show="data.selection.type==3">Lượng mưa: {{data1.LM3 }} mm</p> 
+				
+				</span>	  
+			</a>
+		</div> 
+		 <div  class="list"  >
+			<span ng-if="data.selection.type==0&&ListDataCBMuaHientai.length==0" style="text-align:center">Không có dữ liệu cảnh báo</span>
+			<span ng-if="data.selection.type==1&&ListDataCBMuaMotNgay.length==0" style="text-align:center">Không có dữ liệu cảnh báo</span>
+			<span ng-if="data.selection.type==3&&ListDataCBMuaBaNgay.length==0" style="text-align:center">Không có dữ liệu cảnh báo</span>
+		</div> 
+	</div>
+</ion-content>

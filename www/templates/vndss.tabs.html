@@ -1,0 +1,27 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content edge-drag-threshold="100" drag-content="true">
+        <ion-header-bar class="forecast_flow bar-positive">
+			<button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+			<h2 class="title">Trang chủ</h2>
+			<div class="buttons">
+				<button class="button button-icon button-clear ion-ios-search-strong" ng-click="showFilterBar()"></button>
+				<button class="button button-icon button-clear ion-ios-location" ng-click="_fun._goMap('Bản đồ cảnh báo')"></button>
+			</div>
+		</ion-header-bar>
+		<ion-view>
+			 <ion-tabs class="hometab tabs-top">
+
+				  <ion-tab title="Cảnh báo" href="#/tab/warning">
+					<ion-nav-view name="tab-warning"> </ion-nav-view>   
+				  </ion-tab> 
+				  <ion-tab title="Dự báo" href="#/tab/forecast">
+					<ion-nav-view name="tab-forecast"></ion-nav-view>
+				  </ion-tab>
+
+			</ion-tabs>
+		</ion-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+        <ion-nav-view name="menuLeft"></ion-nav-view>
+    </ion-side-menu>
+</ion-side-menus>

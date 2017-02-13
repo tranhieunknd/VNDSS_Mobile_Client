@@ -1,0 +1,34 @@
+<ion-side-menus enable-menu-with-back-views="false" class="vndss-body">
+    <ion-side-menu-content>
+       
+        <ion-view view-title="home">
+            <ion-content class="login">
+
+				<div class="logo">
+					<img src="img/logopctt.png"/>
+				</div>
+				<form ng-init="initLogin()">
+					<div class="list list-inset">
+					  <label class="item item-input">
+						<i class="icon ion-android-contact placeholder-icon"></i>
+						<input id="usernameid" type="text" placeholder="Tên đăng nhập" ng-model="username">
+					  </label>
+					</div>
+					<div class="list list-inset">
+					  <label class="item item-input">
+						<i class="icon ion-locked placeholder-icon"></i>
+						<input type="password" placeholder="Mật khẩu" ng-model="password">
+					  </label> 
+					</div>
+					<div class="list button-login">
+						 <button class="button button-full button-positive" ng-click="LogIn(username, password)" >
+						  Đăng nhập
+						</button>
+					</div>
+				</form>		
+				<div class="rememberlogin"><input type="checkbox" name="gender" value="male" checked>Ghi nhớ đăng nhập</div>
+				<label class="fogetpass">Quên mật khẩu ?</label>		
+            </ion-content>
+        </ion-view>
+    </ion-side-menu-content>
+</ion-side-menus>
